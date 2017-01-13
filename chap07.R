@@ -132,3 +132,100 @@ plot(rain, type='b', axes=F, xlab='Month', ylab='Rainfall cm')
 axis(side=1, at=1:length(rain), labels=month)
 axis(side=2)
 box()
+
+# Pie Charts ----------------
+data11
+pie(data11)
+data8
+pie(x=data11,labels=data8)
+?pie
+pie(x=data11,labels=data8, radius=.9)
+box()
+pie(x=data11,labels=data8, clockwise = F)
+pie(x=data11,labels=data8, init.angle = 100,clockwise = T) # first label at 100 degrees
+pie(x=data11,labels=data8, init.angle = 0,clockwise = T)
+pie(x=data11,labels=data8, density=33, angle=30) # slope of shading lines with density
+pie(x=data11,labels=data8, density=5, angle=100) # slope of shading lines with density
+s=seq(10,80,10)
+(s=seq(60,90,5))
+
+?seq
+c(paste('gray0',seq(0,9,1),sep=""),'gray10','gray11','gray12')
+pie(x=data11,labels=data8, col=c(paste('gray',s,sep="")))
+pie(x=data11,labels=data8, col=c('gray40','gray50','gray60','gray70','gray80')) # select colors from pool in sequence, repeat
+pie(x=data11,labels=data8, col=c('red','green','blue'), cex = 1.2)
+pie(x=data11,labels=data8, , cex = 1.2)
+?pie
+pie(c(Sky = 78, "Sunny side of pyramid" = 17, "Shady side of pyramid" = 5),
+    init.angle = 315, col = c("deepskyblue", "yellow", "yellow3"), border = FALSE)
+n <- 200
+pie(rep(1, n), labels = "", col = rainbow(n), border = NA,
+    main = "pie(*, labels=\"\", col=rainbow(n), border=NA,..")
+
+require(grDevices)
+pie(rep(1, 24), col = rainbow(24), radius = 0.9)
+
+pie.sales <- c(0.12, 0.3, 0.26, 0.16, 0.04, 0.12)
+names(pie.sales) <- c("Blueberry", "Cherry","Apple", "Boston Cream", "Other", "Vanilla Cream")
+pie(pie.sales) # default colours
+pie(pie.sales, col = c("purple", "violetred1", "green3","cornsilk", "cyan", "white"))
+pie(pie.sales, col = gray(seq(0.4, 1.0, length = 6)))
+pie(pie.sales, density = 10, angle = 15 + 10 * 1:6)
+pie(pie.sales, clockwise = TRUE, main = "pie(*, clockwise = TRUE)")
+segments(0, 0, 0, 1, col = "red", lwd = 2)
+text(0, 1, "init.angle = 90", col = "red")
+segments(0, 0, 1, 1, col = "red", lwd = 2)
+segments(0, 0, 2, 1, col = "red", lwd = 2)
+segments(0, 1, 1, 1, col = "red", lwd = 2)
+segments(1, 1, 1, 1, col = "red", lwd = 2)
+?segments
+
+
+
+# Segments
+x <- stats::runif(12); y <- stats::rnorm(12)
+i <- order(x, y); x <- x[i]; y <- y[i]
+plot(x, y, main = "arrows(.) and segments(.)")
+## draw arrows from point to point :
+s <- seq(length(x)-1)  # one shorter than data
+arrows(x[s], y[s], x[s+1], y[s+1], col= 1:3)
+s <- s[-length(s)]
+segments(x[s], y[s], x[s+2], y[s+2], col= 'pink')
+
+# Cont'd
+bird
+pie(bird[,1],col=pc)  # coln 1 
+mf[1,1:5]
+pie(x=mf[1,1:5]) # error x values must be positive
+pie(x=as.matrix(mf[1,1:5]))
+pie(x=as.matrix(mf[1,1:5]),labels=names(mf),col=pc)
+str(mf)
+
+# Cleveland Dot Charts
+data11 ; data8
+dotchart(data11, labels=data8)
+dotchart(bird)
+bird
+dotchart(t(bird))
+str(bird)
+class(bird)
+t(bird)
+?dotchart
+dotchart(x, labels = NULL, groups = NULL, gdata = NULL,
+         cex = par("cex"), pt.cex = cex,
+         pch = 21, gpch = 21, bg = par("bg"),
+         color = par("fg"), gcolor = par("fg"), lcolor = "gray",
+         xlim = range(x[is.finite(x)]),
+         main = NULL, xlab = NULL, ylab = NULL, ...)
+dotchart(bird, labels= names(bird), bg='green')
+dotchart(bird, color='gray30')
+dotchart(bird, gcolor='black',pch=18)
+dotchart(bird, lcolor='red', cex=.8)
+dotchart(bird, gcolor='blue', xlab='Bird Counts', ylab='Bird Type') # in this ylab has not effect
+# Group data
+dotchart(bird, gdata=colMeans(bird), gpch=16, gcolor='red')
+mtext('Grouping = mean left/bottom', side=3,adj=0)
+mtext('Grouping = mean right/top', side=1,adj=1) # side 0, 1
+?mtext
+mtext(text, side = 3, line = 0, outer = FALSE, at = NA,
+      adj = NA, padj = NA, cex = NA, col = NA, font = NA, ...)
