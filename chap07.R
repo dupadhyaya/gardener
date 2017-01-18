@@ -229,3 +229,31 @@ mtext('Grouping = mean right/top', side=1,adj=1) # side 0, 1
 ?mtext
 mtext(text, side = 3, line = 0, outer = FALSE, at = NA,
       adj = NA, padj = NA, cex = NA, col = NA, font = NA, ...)
+
+# BAR CHARTS -------------------
+rain
+barplot(rain)
+barplot(rain, names= month)
+names(rain)
+title('Rainfall over the year', xlab='Month', ylab='Rain in cm')
+barplot(rain, names= month, ylim=c(0,max(rain)*1.2))
+box()
+abline(h=6)
+abline(h=mean(rain))
+text(3,6,'Average Rain', adj = 0, col='green')
+abline(h=seq(1,9,2),lty=2,lwd=.05,col='red')
+text(2, 6, "A label")
+text(5, 10, "Another label")
+
+barplot(height, width = 1, space = NULL,
+        names.arg = NULL, legend.text = NULL, beside = FALSE,
+        horiz = FALSE, density = NULL, angle = 45,
+        col = NULL, border = par("fg"),
+        main = NULL, sub = NULL, xlab = NULL, ylab = NULL,
+        xlim = NULL, ylim = NULL, xpd = TRUE, log = "",
+        axes = TRUE, axisnames = TRUE,
+        cex.axis = par("cex.axis"), cex.names = par("cex.axis"),
+        inside = TRUE, plot = TRUE, axis.lty = 0, offset = 0,
+        add = FALSE, args.legend = NULL, ...)
+barplot(rain, names= month, ylim=c(0,max(rain)*1.2), space=c(1,2),beside=T)
+ barplot(rain, names= month, ylim=c(0,max(rain)*1.2), beside=F)
