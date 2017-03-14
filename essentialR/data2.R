@@ -141,3 +141,24 @@ newlm = lm(col2 ~ col1, data=newdf)
 case.names(newmat)
 case.names(newdf)
 case.names(newlm)
+
+
+#class------
+
+
+#colnames ---
+colnames(newmat)
+
+newnames=c('First','Second','Third', 'Fourth')
+colnames(newmat) = newnames
+newmat
+
+#comment
+comment(newmat) = 'This is comment'
+comment(newmat)
+attributes(newmat)
+class(newmat)
+comment(newmat) =NULL
+
+#dim
+dim(newmat)
