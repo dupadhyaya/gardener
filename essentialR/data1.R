@@ -205,7 +205,7 @@ seq(from=1, to=10, along.with = c(1,1,1,1))
 seq(from=1, to=10, along.with = c(1,1,1))
 seq(from=1, to=10, along.with = 1:6)
 
-# Creating Data from Keyboard ----------
+# Creating Data from Keyboard 
 #scan -------
 
 #subsetting []------
@@ -242,7 +242,54 @@ newobj = cbind(col3, newdf)
 class(newobj)
 newobj
 
-#data.frame ---------
+#rbind ----------
+rbind(..., deparse.level = 1)
+#deparse.level=0 - do not use old names of row/col
+row1 = 1:3
+row2 = 4:6
+row3 = 7:9
+newmat = rbind(row1,row2,row3)
+newmat
+
+new.df = data.frame(col1=c(1:3), col2=c(4:6))
+new.df
+row3 = c(9,9)
+rbind(new.df, row3)
+
+#within ----------
+within(data, expr) # opens up object temporarily
+newlist = list(Ltrs= letters[1:5], Nmbrs = 100:110)
+newlist
+within(newlist, lNmbrs <- log(Nmbrs))
+
+newdf = data.frame(col1 = 1:3, col2 = 4:6)
+newdf
+within(newdf, col1 <- -col2)
+within(newdf, col3 <- col1 + col2)
+
+#dput ---------
+mow = c(12, 15, 17, 11, 15)
+dput(mow, file='dput_vector.txt', control='all')
+
+(newdf = data.frame(col1=1:3, col2=4:6))
+dput(newdf, file='./essentialR/dput_frame.txt', control='all')
+
+dget(file='./essentialR/dput_frame.txt')
+structure(list(col1 = 1:3, col2 = 4:6), .Names = c("col1", "col2"
+), row.names = c(NA, -3L), class = "data.frame")
+
+#file.choose
 
 
-#matrix--------------
+newmat = matrix(1:20, ncol=5,dimnames = list(letters[1:4], LETTERS[1:5]))
+newmat
+write.table(newmat, file='./essentialR/myfile.txt')
+write.table(newmat, file='./essentialR/myfile.csv', row.names = FALSE, sep=",")
+write.table(newmat, file='./essentialR/myfile.tsv', row.names = FALSE,
+            col.names=FALSE, sep="\t")
+read.csv(file='./essentialR/myfile.csv')
+read.table(file='./essentialR/myfile.txt', header=T, row.names = 1)
+read.table(file='./essentialR/myfile.tsv', header=F, sep='\t')
+read.delim(file='./essentialR/myfile.tsv', header=F)
+read.table(file='./essentialR/myfile.tsv', header=F, sep='\t',
+           col.names=LETTERS[11:15], row.names = letters[11:14])
