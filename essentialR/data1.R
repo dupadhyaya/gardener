@@ -1,4 +1,12 @@
 # Data
+#http://www.gardenersown.co.uk/education/lectures/Essential%20R%20support.htm#TOC
+# Data types–Different kinds of data and converting one kind of data into another kind.
+# Creating data–Commands for making data items from the keyboard.
+# Importing data–Getting data from sources on disk.
+# Saving data–How to save your work.
+# Viewing data–Seeing what data you have in R.
+# Summarizing data–Ways of summarizing data objects. Some of these commands will also appear in Theme 2: “Math and Statistics.”
+# Distribution of data–Looking at different data distributions and the commands associated with them, including random numbers.
 
 # array --------------
 array(1:12)
@@ -156,3 +164,85 @@ gl(n=2, k=3, labels=c('Treat', 'Ctrl'))
 gl(n=2, k=3, labels=c('Treat', 'Ctrl'), ordered=TRUE)
 gl(n=3, k=3, length=8, labels=LETTERS[1:3], ordered=TRUE)
 
+#interaction ---------------
+# new factor using combination of other factors
+interaction(...., drop=FALSE, sep=".")
+load(file='./essentialR/Essential.RData')
+# load("/duwork/rWork/projects/gardener/essentialR/Essential.RData")
+summary(pw)
+ls()
+str(pw)
+int = interaction(pw$plant, pw$water, sep='-')
+int
+levels(int)
+
+# rep -----------
+rep(x, times, length.out, each)
+(newnum = 1:6)
+(newchar = LETTERS[1:3])
+rep(newnum)
+rep(newnum,times=2) # 1 2 3 4 5 6 1 2 3 4 5 6
+rep(newnum,each=2) # 1 1 2 2 . .
+rep(newnum, each=2, length.out = 11)  # length of 11 
+newchar
+rep(newchar, times=2)
+rep(newchar, times=c(2,3,4))
+rep(newnum, times=1:6)
+rep(c('mow','unmow'), times=c(5,4))
+
+# rbind - later
+# seq ---------------
+seq(from=1, to=1, by = c((to - from)/ (length.out-1)), 
+    length.out=NULL, along.with = NULL)
+seq(from=1, to=12)
+seq(from=1, to=24, by=3)  # by is interval
+seq(from=1, by=3, length.out= 6)
+seq_len(length.out = 6)
+
+seq_along(along.with = 50:40) # ???
+seq_along(along.with = c(5,4,3,2,7,8,2))
+seq(from=1, to=10, along.with = c(1,1,1,1))
+seq(from=1, to=10, along.with = c(1,1,1))
+seq(from=1, to=10, along.with = 1:6)
+
+# Creating Data from Keyboard ----------
+#scan -------
+
+#subsetting []------
+object[elements]
+#vectors & lists have 1 dim, matrix & DF have 2 dim [r,c]
+mow = c(12,15,17,11)
+mow  
+mow[5] = 15
+mow
+unmow = c(8,9,7,9,NA)
+unmow
+mydf = data.frame(mow, unmow)
+mydf
+newdat = 6:1
+newdat
+length(mow);length(unmow);length(newdat)
+mow[6]=unmow[6]=NA
+mydf = data.frame(mow, unmow)
+mydf
+
+mydf[,3] = newdat
+mydf
+
+#cbind --------
+col1=1:3
+col2=4:6
+newmat=cbind(col1,col2)
+newmat
+col3=7:9
+cbind(newmat,col3)
+cbind(col3, newmat, deparse.level = 0)
+newdf = data.frame(col1,col2)
+newobj = cbind(col3, newdf)
+class(newobj)
+newobj
+
+#data.frame ---------
+
+
+#matrix--------------
