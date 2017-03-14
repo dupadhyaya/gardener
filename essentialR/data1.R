@@ -293,3 +293,66 @@ read.table(file='./essentialR/myfile.tsv', header=F, sep='\t')
 read.delim(file='./essentialR/myfile.tsv', header=F)
 read.table(file='./essentialR/myfile.tsv', header=F, sep='\t',
            col.names=LETTERS[11:15], row.names = letters[11:14])
+
+
+#scan ------------
+scan(file='', what=double(0), sep='', dec='.', skip=0, na.strings='NA', comment.char='')
+newvec =scan()
+# keep typing / entering letter. One blank enter will terminate the scan
+newvec = scan(sep = ',') # seperate by comma
+scan(what = 'character')
+numvec = 1:20
+txtvec = month.abb
+cat(numvec, file='numvec.txt')
+cat(numvec, file='numvec.csv', sep=',')
+cat(txtvec, file='txtvec.tsv', sep='\t')
+
+## read from disk
+scan(file='numvec.txt')
+scan(file='numvec.csv',sep=',')
+scan(file = 'txtvec.tsv', sep='\t', what='character')  # difference
+
+newmat = matrix(1:12, ncol=3, dimnames = list(NULL, LETTERS[1:3]))
+newmat
+# save to disk with header row
+write.csv(newmat, file='myfile.csv', row.names=FALSE )
+scan(file='myfile.csv', sep=',', what=list(cno.1 = double(0),
+                    cno.2 = double(0), lastcn=double(0)), skip=1)
+
+#source ----------
+# run saved scripts
+myfunc = function(x) {
+  tmp = seq_along(x)
+  for (i in 1:length(tmp)) tmp[i] = median(x[1:i])
+  print(tmp)
+}
+myfunc(5)
+dump(ls(pattern='myfunc'), file='myfunc.R')
+rm(myfunc)
+source('myfunc.R')
+myfunc(10)
+
+# data --------------
+# load datasets or show available data fm loaded packages
+# added to search path
+data(..., list= character(0), package=NULL)
+data() # all available packages
+library(MASS)
+?data
+try(data(package='MASS'))
+data(package='MASS')
+data(package=.packages(all.available = TRUE)) # all available package datasets
+
+data(DNase)
+str(DNase)
+data('DNase')
+data(list=('DNase'))
+ls()
+data("Animals", package="MASS")
+ls(pattern = 'Animals')
+ls(pattern = '^D')
+rm(DNase)
+ls(pattern = '^D')
+
+#load -------
+load(file)
