@@ -355,4 +355,44 @@ rm(DNase)
 ls(pattern = '^D')
 
 #load -------
-load(file)
+load(file='')
+newvec = c(1,3,5,9)
+newmat = matrix(1:24, nrow=3, dimnames=list(letters[1:3], LETTERS[1:8]))
+newmat
+save(newvec, newmat, file='saved.RData')  # .RData extension
+ls(pattern='^new')
+rm(newmat, newvec)
+ls(pattern='^new')
+# load
+load(file='saved.RData')
+ls(pattern='^new')
+
+#package - foreign -------------
+#package - gdata ------------
+library(gdata)
+
+#package - xlsx -------
+library(xlsx)
+
+# Saving Data as Text File to Disk
+#cat -------------
+cat(..., file='', sep='', fill=FALSE, labels=NULL, append=FALSE)
+# output objects to screen and file as text - vectors and matrix objects only
+# names not preserved for matrix
+mat = matrix(1:24, nrow=3, dimnames=list(letters[1:3], LETTERS[1:8]))
+mat
+cat(mat)  # one line
+cat(mat, fill=40, sep='.. ') # width and parameter 40-width
+# 4 lines- 40 chars per line
+cat(mat, fill=40, sep='., ', labels=c('First','Second', 'Third')) # row labels
+
+cat('Mean =' , mean(mat))
+
+(vec = month.abb[1:14])
+(vec = month.abb[1:12])
+cat(vec)
+cat(vec, fill=18)
+
+cat(vec, fill=25, labels=paste('Qtr',1:4,sep=''), sep='.. ')
+cat('A Message', '\n', 'Split into Seperate', '\n', 'lines.' ,'\n')
+
