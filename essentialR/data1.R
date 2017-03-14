@@ -396,3 +396,56 @@ cat(vec, fill=18)
 cat(vec, fill=25, labels=paste('Qtr',1:4,sep=''), sep='.. ')
 cat('A Message', '\n', 'Split into Seperate', '\n', 'lines.' ,'\n')
 
+# dput ---------
+
+# write ------------
+# write data to text file; similar to cat: vector & matrix data only
+write(x, file='data', ncolumns = if(is.character(x)) 1 else 5, append=F, sep='')
+vecnum = 1:12
+vectxt = month.abb[1:6]
+mat = matrix(1:12, nrow=2, dimnames=list(letters[1:2], LETTERS[1:6]))
+vecnum; vectxt; mat
+write(vecnum, file='')  # default to 5 columns
+write(vectxt, file='')  # default to 1 column
+write(vectxt, file='', ncolumns=2)
+write(mat, file='')
+write(mat, file='', ncolumns=8)
+write(mat, file='', ncolumns=8, sep=',')
+t(mat)
+write(t(mat), file='', ncolumns=6, sep=':')
+
+#write.table----------
+write.table(x, file='', append=FALSE, quote=TRUE, sep='',
+            eol='\n', na='NA', dec=',', row.names=TRUE, 
+            col.names=TRUE, qmethod='escape')
+dat = data.frame(col1 = 1:3, col2=4:6)
+dat
+datrn = dat
+rownames(datrn) = c('First', 'Second', 'Third')
+str(datrn)
+datrn
+dat
+write.table(dat, file='', row.names = FALSE)
+write.table(datrn, file='')
+write.table(datrn, file='', col.names = NA)
+write.csv(datrn, file='')
+# file='' - output to screen
+write.table(datrn, file='', col.names = NA, quote=FALSE, sep='::')
+
+#save --------------
+
+save(..., list=list(character(0L), file=stop("'file' must be specified")),
+     ascii=FALSE)
+save.image(file='.RData')
+newdf
+
+save(newvec, newlist, newmat, newdf, file='my_stuff.RData')
+save(list=ls(pattern = '^new|mow$'), file='my_ls.RData')
+rm(list=ls())
+load('my_stuff.RData')
+ls()
+load('my_ls.RData')
+ls()
+
+#next - Viewing Data - Pg 61 -----------
+#attach
