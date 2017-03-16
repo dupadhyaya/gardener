@@ -162,3 +162,208 @@ comment(newmat) =NULL
 
 #dim
 dim(newmat)
+# vector retuns NULL
+newlist = list(Ltrs=LETTERS[1:5],Nmbrs=1:5)
+dim(newlist)
+newmat = matrix(1:24,ncol=4)
+dim(newmat)
+newdf = data.frame(col1=1:3, col2=4:6)
+dim(newdf)
+newdf
+newchar= month.abb[1:10]
+dim(newchar)
+
+#dimnames--------------pg84
+newmat
+newmat = matrix(1:12,ncol=4,dimnames =list(c('R1','R2','R3'), c('C1','C2','C3','C4')))
+dim(newmat)
+dimnames(newmat)
+newmat
+
+newdf = data.frame(col1=1:6, col2=7:12, row.names = c('R1','R2','R3','R4','R5','R6'))
+dimnames(newdf)
+dimnames(newdf)[[2]] = month.abb[10:11]
+newdf
+
+newmat = matrix(1:12, ncol=3)
+dimnames(newmat)
+dimnames(newmat) = list(letters[1:4],LETTERS[1:3])
+dimnames(newmat)
+newmat
+dimnames(newmat)[[1]] = month.abb[1:4]
+newmat
+
+#length---------
+
+#levels -------------
+levels(x)
+levels(x) = value
+newfac = gl(n=3, k=3, length = 9)
+newfac
+levels(newfac)
+levels(newfac) = c(4,5,6)
+levels(newfac)
+levels(newfac) = c('a','b','c')
+levels(newfac)
+newfac
+
+#ls.str ---------
+ls.str(pos=-1, name, all.names = FALSE, pattern)
+ls(pattern='^new')
+ls.str(pattern='^new')
+ls()
+search()
+ls(pos=1)  # GlobalEnv
+
+#lsf.str --------------
+lsf.str()
+manning = function(radius, gradient, coeff) {
+  (radius^(2/3) * gradient^0.5 / coeff)
+}
+
+cubrt = function(x) { 
+  x^(1/3)
+}
+lsf.str()
+
+#mode ---------
+# attribute related to its type
+mode(x)
+mode(x) = value
+mode(newlist)
+mode(newmat)
+mode(newdf)
+
+#names ----------
+newdf = data.frame(col1=1:3, col2=4:6)
+names(newdf)
+newdf = data.frame(1:3, 4:6)
+names(newdf)
+
+newmat = matrix(1:12, ncols=3)
+names(newmat)
+
+newvec = 1:6
+names(newvec) 
+
+names(newdf) = c('One','Two')  
+names(newdf)
+
+names(newmat) = c('One','Two','Three')
+names(newmat)  # does not work
+# use colnames & dimnames for matrix
+colnames(newmat) = c('One','Two','Three')
+colnames(newmat)  # vector stored in col & rows
+
+newlist = list(letters[1:5],100:110)
+names(newlist)
+names(newlist) = c('Letters', 'Numbers')
+names(newlist)
+
+#ncol -------
+nrow(newdf) ; nrow(newmat); nrow(newvec) ; nrow(newlist)
+
+NROW(newdf) ; NROW(newmat) ; NROW(newvec) ; NROW(newlist)
+
+ncol(newdf) ; ncol(newmat) ;ncol(newvec) ; ncol(newlist)
+
+NCOL(newdf) ; NCOL(newmat) ; NCOL(newvec) ; NCOL(newlist)
+
+#nlevels ----------
+nlevels(newdf)
+newfac = gl(n=4, k=3)
+nlevels(newfac)
+newvec = c('First', 'Second', 'Third')
+fac2 = factor(newvec)
+nlevels(newvec)
+nlevels(fac2)
+
+#relevel ----------
+#shift the level for reference
+relevel(x, ref)
+newfac = gl(n=4, k=3, labels=letters[1:4])
+newfac
+nlevels(newfac)
+newfac= relevel(newfac, ref='c')
+newfac
+newfac= relevel(newfac, ref='d')
+newfac
+
+#reorder -------------
+# reorder based on other values 
+reorder(x, X, FUN=mean,...)
+newfac = gl(n=4, k=4, labels=letters[1:4])
+newfac
+length(newfac)
+newvec = c(1:4, 4:7, 6:9, 2:5)
+newvec
+length(newvec)
+reorder(newfac, newvec, FUN=mean)
+reorder(newfac, newvec, FUN=median)
+newfac
+newvec
+reorder(newfac, newvec, FUN=sum)
+newfac2 = reorder(newfac, newvec, FUN=sum)
+newfac2
+
+boxplot(newvec ~ newfac)
+boxplot(newvec ~ reorder(newfac, newvec, FUN=median))
+
+#....
+
+
+#row.names --------Pg 99
+#DF only
+row.names(x)
+row.names(x) = value
+
+newdf = data.frame(col1=1:3, col2=4:6)
+row.names(newdf)
+row.names(newdf) = paste('R',1:3,sep='-')
+row.names(newdf)
+
+#rownames --------
+# matrix and Df
+rownames(newdf) = paste('RR',1:3,sep='%')
+newdf
+newmat = matrix(1:12, nrow=4)
+rownames(newmat)
+rownames(newmat) = paste('r',1:4,sep='')
+newmat
+rownames(newmat)
+
+#str ----------
+str(newdf)
+str(newmat)
+str(newvec)
+str(newlist)
+
+#typeof ---------
+# same as storage.mode
+
+#unclass -----
+class(newdf)
+unclass(newdf)
+class(newdf)  # df as list
+unclass(newmat)  # not affected
+unclass(newlist)
+class(unclass(newdf))
+
+# unlist ---------
+newlist
+unlist(newlist, use.names = TRUE)
+unlist(newlist, use.names = FALSE) # list to 1 vector
+
+#variable.names -----------
+# of fitted models or colnames of DF & matrix
+variable.names(newdf)
+
+variable.names(newmat)
+newmat = matrix(1:12, nrow=3, dimnames=list(letters[1:3], LETTERS[1:4]))
+variable.names(newmat)
+newmat
+newlm = lm(col2 ~ col1, data=newdf)
+variable.names(newlm)
+
+#page no 107
+# Next Selecting and Sampling Data
