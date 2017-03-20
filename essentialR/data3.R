@@ -151,3 +151,13 @@ rank(newvec, na.last = FALSE)  # NA in end
 rank(newvec, na.last = TRUE)  # NA in begin
 rank(newvec, na.last = FALSE, ties.method = 'max')
 newvec
+
+#sort -------------
+sort(x, decreasing = FALSE, na.last = NA)
+# rearrange data into a new order
+newvec = c(3,4,NA, 7,1,6,5,5,2)
+sort(newvec)  # NA omitted
+sort(newvec, na.last=TRUE) # NA at last
+sort(newvec, na.last=FALSE) # NA at first
+sort(newvec, decreasing=TRUE)  # NA omitted & decreasing
+
