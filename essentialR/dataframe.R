@@ -38,3 +38,14 @@ str(dfl)
 
 dfm <- data.frame(x = 1:3, y = I(matrix(1:9, nrow = 3)))
 str(dfm)
+
+# Search
+head(mtcars)
+mtcars[mtcars$mpg>25.0,]
+mtcars[rownames(mtcars) == 'Fiat 128',]
+mtcars[mtcars$gear == 4,]
+mtcars[rownames(mtcars) == '^M',]
+mtcars[grep("^M", rownames(mtcars), ignore.case=T),]
+mtcars[grep("^4", mtcars$gear), ]
+subset(mtcars, carb == '2')
+subset(mtcars, hp==110)
