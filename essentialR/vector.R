@@ -19,3 +19,9 @@ str(c("a", 1))
 
 x <- c(FALSE, FALSE, TRUE)
 as.numeric(x)
+
+
+s = c("aa", "bb", "cc", "dd", "ee")
+L = c(FALSE, TRUE, FALSE, TRUE, FALSE) 
+s[L] 
+s[c(FALSE, TRUE, FALSE, TRUE, FALSE)] 
