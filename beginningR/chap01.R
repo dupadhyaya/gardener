@@ -10,4 +10,23 @@
 # Obtaining additional libraries of commands
 # In this chapter you see how to get R and install it on your computer. You also learn how to access the built-in help system and find out about additional packages of useful analytical routines that you can add to R.
 
+# R is open source Statistical env modeled after S & SPlus
+# Started by Robert Gentleman & Ross Ihaka
 
+help.start()
+
+# R Website : www.r-project.org
+
+help("+")
+?"+"
+??"ifelse"
+
+apropos("ifel")
+
+
+# command packages loaded by default
+search()
+library(timeSeries)
+search()
+detach(package:timeSeries)
+search()
